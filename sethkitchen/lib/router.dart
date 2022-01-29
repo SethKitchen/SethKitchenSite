@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sethkitchen/Extensions/routing_data.dart';
+import 'package:sethkitchen/Pages/about_me_page.dart';
 import 'package:sethkitchen/Pages/base_page.dart';
 import 'package:sethkitchen/Pages/home_page.dart';
 
@@ -13,7 +14,12 @@ class RoutedApp extends MaterialApp {
           key: GlobalObjectKey<HomePageDefaultState>(
               DateTime.now().millisecondsSinceEpoch),
           name: 'homePage',
-          path: '/')
+          path: '/'),
+      '/about': (BuildContext context) => AboutMePage(
+          key: GlobalObjectKey<HomePageDefaultState>(
+              DateTime.now().millisecondsSinceEpoch),
+          name: 'aboutMePage',
+          path: '/about')
     };
     knownRoutes.addAll(dynamicRoutes);
     return RoutedApp._(knownRoutes);
@@ -29,6 +35,14 @@ class RoutedApp extends MaterialApp {
                   DateTime.now().millisecondsSinceEpoch),
               name: 'homePage',
               path: '/');
+        });
+      case '/about':
+        return MaterialPageRoute<dynamic>(builder: (context) {
+          return HomePage(
+              key: GlobalObjectKey<AboutMePageDefaultState>(
+                  DateTime.now().millisecondsSinceEpoch),
+              name: 'aboutMePage',
+              path: '/about');
         });
       default:
         return MaterialPageRoute<dynamic>(builder: (context) {
