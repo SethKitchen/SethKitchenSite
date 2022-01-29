@@ -80,7 +80,7 @@ class HomePageDefaultState extends State<HomePage> {
                     children: [
                       Expanded(
                           child: Image.network(
-                              "https://sethkitchen.github.io/images/kitchentokenwhite.png")),
+                              "https://seth.kitchen/images/kitchentokenwhite.png")),
                       const Padding(
                           padding: EdgeInsets.all(10),
                           child: Text("Buy Kitchen Token"))
@@ -110,7 +110,7 @@ class HomePageDefaultState extends State<HomePage> {
                                 color: Colors.grey,
                                 child: const NonYoutubeVideo(
                                     link:
-                                        "https://sethkitchen.github.io/images/intro.mp4"))),
+                                        "https://seth.kitchen/images/intro.mp4"))),
                         Align(
                             alignment: Alignment.center,
                             child: Padding(
@@ -168,7 +168,7 @@ class HomePageDefaultState extends State<HomePage> {
                                   width: 100,
                                   child: CircleAvatar(
                                     backgroundImage: NetworkImage(
-                                        "https://sethkitchen.github.io/images/avatar.jpg"),
+                                        "https://seth.kitchen/images/avatar.jpg"),
                                   ))),
                           Padding(
                               padding: const EdgeInsets.all(10),

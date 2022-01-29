@@ -43,40 +43,38 @@ class AboutMePageDefaultState extends State<AboutMePage> {
   }
 
   Widget getColumnForScreenSize(double width, double height) {
-    if(width>1000) {
+    if (width > 1000) {
       return Container(
         color: Colors.lightBlue,
-        width:800,
-        child: Column(
-            children: [
-              const Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                      "From Software to Space 🚀, I'm coming for Elon and Bezos! Check out my Resume below.")),
-              Expanded(
-                  child: Container(
-                      color: Colors.purple,
-                      child: AdobePdfViewer(
-                          pdfUrl: "https://sethkitchen.github.io/images/Resume.pdf",
-                          pdfFileName: "Resume")))
-            ]),
+        width: 800,
+        child: Column(children: [
+          const Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                  "From Software to Space 🚀, I'm coming for Elon and Bezos! Check out my Resume below.")),
+          Expanded(
+              child: Container(
+                  color: Colors.purple,
+                  child: AdobePdfViewer(
+                      pdfUrl: "https://seth.kitchen/images/Resume.pdf",
+                      pdfFileName: "Resume")))
+        ]),
       );
     } else {
       return Container(
         color: Colors.lightBlue,
-        child: Column(
-            children: [
-              const Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                      "From Software to Space 🚀, I'm coming for Elon and Bezos! Check out my Resume below.")),
-              Expanded(
-                  child: Container(
-                      color: Colors.purple,
-                      child: AdobePdfViewer(
-                          pdfUrl: "https://sethkitchen.github.io/images/Resume.pdf",
-                          pdfFileName: "Resume")))
-            ]),
+        child: Column(children: [
+          const Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                  "From Software to Space 🚀, I'm coming for Elon and Bezos! Check out my Resume below.")),
+          Expanded(
+              child: Container(
+                  color: Colors.purple,
+                  child: AdobePdfViewer(
+                      pdfUrl: "https://seth.kitchen/images/Resume.pdf",
+                      pdfFileName: "Resume")))
+        ]),
       );
     }
   }
@@ -110,7 +108,7 @@ class AboutMePageDefaultState extends State<AboutMePage> {
                                   width: 100,
                                   child: CircleAvatar(
                                     backgroundImage: NetworkImage(
-                                        "https://sethkitchen.github.io/images/avatar.jpg"),
+                                        "https://seth.kitchen/images/avatar.jpg"),
                                   ))),
                           Padding(
                               padding: const EdgeInsets.all(10),
