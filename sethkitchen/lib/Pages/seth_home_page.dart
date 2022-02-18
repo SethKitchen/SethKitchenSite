@@ -6,15 +6,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sethkitchen/Extensions/video_player.dart';
 import 'package:sethkitchen/Pages/base_page.dart';
 
-class HomePage extends BasePage {
-  const HomePage({required key, required String name, required String path})
+class SethHomePage extends BasePage {
+  const SethHomePage({required key, required String name, required String path})
       : super(key: key, name: name, path: path);
 
   @override
-  State<StatefulWidget> createState() => HomePageDefaultState();
+  State<StatefulWidget> createState() => SethHomePageDefaultState();
 }
 
-class HomePageDefaultState extends State<HomePage> {
+class SethHomePageDefaultState extends State<SethHomePage> {
   String quoteText =
       '"Currently messing with Kitchen token on Solana blockchain!"';
 
@@ -81,9 +81,15 @@ class HomePageDefaultState extends State<HomePage> {
                       Expanded(
                           child: Image.network(
                               "https://seth.kitchen/images/kitchentokenwhite.png")),
-                      const Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Text("Buy Kitchen Token"))
+                      MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/wallet');
+                              },
+                              child: const Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text("Buy Kitchen Token"))))
                     ],
                   ))),
         ),
