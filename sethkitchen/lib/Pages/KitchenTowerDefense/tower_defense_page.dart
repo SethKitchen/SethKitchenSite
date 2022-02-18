@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sethkitchen/Extensions/adobe_pdf_viewer.dart';
 import 'package:sethkitchen/Pages/base_page.dart';
 
-class AboutMePage extends BasePage {
-  const AboutMePage({required key, required String name, required String path})
+class TowerDefensePage extends BasePage {
+  const TowerDefensePage(
+      {required key, required String name, required String path})
       : super(key: key, name: name, path: path);
 
   @override
-  State<StatefulWidget> createState() => AboutMePageDefaultState();
+  State<StatefulWidget> createState() => TowerDefensePageDefaultState();
 }
 
-class AboutMePageDefaultState extends State<AboutMePage> {
+class TowerDefensePageDefaultState extends State<TowerDefensePage> {
   String quoteText =
       '"Currently messing with Kitchen token on Solana blockchain!"';
+
+  @override
+  Future<void> initState() async {
+    super.initState();
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    ShadowTrainingUI gameUI = ShadowTrainingUI();
+    ShadowTraining game = ShadowTraining(gameUI.state);
+    gameUI.state.storage = storage;
+    gameUI.state.game = game;
+  }
 
   Widget getTextForScreenSize(double width) {
     if (width > 800) {
@@ -39,40 +49,10 @@ class AboutMePageDefaultState extends State<AboutMePage> {
   }
 
   Widget getColumnForScreenSize(double width, double height) {
-    if (width > 1000) {
-      return Container(
-        color: Colors.lightBlue,
-        width: 800,
-        child: Column(children: [
-          const Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                  "From Software to Space 🚀, I'm coming for Elon and Bezos! Check out my Resume below.")),
-          Expanded(
-              child: Container(
-                  color: Colors.purple,
-                  child: AdobePdfViewer(
-                      pdfUrl: "https://seth.kitchen/images/Resume.pdf",
-                      pdfFileName: "Resume")))
-        ]),
-      );
-    } else {
-      return Container(
-        color: Colors.lightBlue,
-        child: Column(children: [
-          const Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                  "From Software to Space 🚀, I'm coming for Elon and Bezos! Check out my Resume below.")),
-          Expanded(
-              child: Container(
-                  color: Colors.purple,
-                  child: AdobePdfViewer(
-                      pdfUrl: "https://seth.kitchen/images/Resume.pdf",
-                      pdfFileName: "Resume")))
-        ]),
-      );
-    }
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+        color: Colors.white,
+        child: Container(color: Colors.yellow));
   }
 
   @override

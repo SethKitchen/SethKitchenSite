@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sethkitchen/Extensions/routing_data.dart';
+import 'package:sethkitchen/Pages/KitchenTowerDefense/tower_defense_page.dart';
 import 'package:sethkitchen/Pages/about_me_page.dart';
 import 'package:sethkitchen/Pages/base_page.dart';
 import 'package:sethkitchen/Pages/home_page.dart';
@@ -16,10 +17,15 @@ class RoutedApp extends MaterialApp {
           name: 'homePage',
           path: '/'),
       '/about': (BuildContext context) => AboutMePage(
-          key: GlobalObjectKey<HomePageDefaultState>(
-              DateTime.now().millisecondsSinceEpoch),
+          key: GlobalObjectKey<AboutMePageDefaultState>(
+              DateTime.now().millisecondsSinceEpoch*2),
           name: 'aboutMePage',
-          path: '/about')
+          path: '/about'),
+      '/towers': (BuildContext context) => TowerDefensePage(
+          key: GlobalObjectKey<TowerDefensePageDefaultState>(
+              DateTime.now().millisecondsSinceEpoch*3),
+          name: 'towerDefensePage',
+          path: '/towers')
     };
     knownRoutes.addAll(dynamicRoutes);
     return RoutedApp._(knownRoutes);
@@ -40,9 +46,17 @@ class RoutedApp extends MaterialApp {
         return MaterialPageRoute<dynamic>(builder: (context) {
           return HomePage(
               key: GlobalObjectKey<AboutMePageDefaultState>(
-                  DateTime.now().millisecondsSinceEpoch),
+                  DateTime.now().millisecondsSinceEpoch*2),
               name: 'aboutMePage',
               path: '/about');
+        });
+      case 'towers':
+        return MaterialPageRoute<dynamic>(builder: (context) {
+          return TowerDefensePage(
+              key: GlobalObjectKey<TowerDefensePageDefaultState>(
+                  DateTime.now().millisecondsSinceEpoch*3),
+              name: 'towerDefensePage',
+              path: '/towers');
         });
       default:
         return MaterialPageRoute<dynamic>(builder: (context) {

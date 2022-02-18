@@ -87,15 +87,22 @@ class HomePageDefaultState extends State<HomePage> {
                     ],
                   ))),
         ),
-        const StaggeredGridTile.count(
+        StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
             child: Card(
                 child: Align(
                     alignment: Alignment.center,
                     child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text("Coming Soon... Kitchen Tower Defense"))))),
+                        padding: const EdgeInsets.all(10),
+                        child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed('/towers');
+                                },
+                                child: const Text(
+                                    "Coming Soon... Kitchen Tower Defense"))))))),
         StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 2,
