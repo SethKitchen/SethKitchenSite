@@ -1,0 +1,3 @@
+[submodule "sethkitchen/lib/wallet"]
+	path = sethkitchen/lib/wallet
+	url = https://github.com/SethKitchen/reactor-wallet
