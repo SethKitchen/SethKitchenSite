@@ -19,14 +19,12 @@ class App extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     TokenTrackers tokensTracer = ref.read(tokensTrackerProvider);
     ref.watch(settingsProvider);
-    ThemeType selectedTheme = ref.read(settingsProvider.notifier).getTheme();
-    bool isDarkTheme = selectedTheme == ThemeType.dark;
 
     useEffect(() {
       loadState(tokensTracer, ref);
     }, []);
 
-    return RoutedApp({});
+    return RoutedApp(const {});
   }
 }
 
@@ -81,7 +79,9 @@ class LinkListenerWrapper extends HookConsumerWidget {
           );
 
           return () => listener.cancel();
-        } catch (err) {}
+        } catch (err) {
+          print(err);
+        }
       },
     );
 

@@ -1,10 +1,8 @@
 import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sethkitchen/Extensions/AdobePdfViewer.dart';
-import 'package:sethkitchen/Extensions/video_player.dart';
 import 'package:sethkitchen/Pages/base_page.dart';
 
 class AboutMePage extends BasePage {

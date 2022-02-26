@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sethkitchen/Extensions/routing_data.dart';
 import 'package:sethkitchen/Pages/about_me_page.dart';
-import 'package:sethkitchen/Pages/base_page.dart';
 import 'package:sethkitchen/Pages/seth_home_page.dart';
 import 'package:sethkitchen/app.dart';
 import 'package:sethkitchen/wallet/pages/account_selection.dart';
