@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sethkitchen/Extensions/routing_data.dart';
 import 'package:sethkitchen/Pages/about_me_page.dart';
+import 'package:sethkitchen/Pages/kitchen_tower_defense_page.dart';
 import 'package:sethkitchen/Pages/seth_home_page.dart';
 import 'package:sethkitchen/app.dart';
 import 'package:sethkitchen/wallet/pages/account_selection.dart';
@@ -25,6 +26,11 @@ class RoutedApp extends MaterialApp {
               DateTime.now().millisecondsSinceEpoch * 2),
           name: 'aboutMePage',
           path: '/about'),
+      '/tower-defense': (BuildContext context) => TowerDefensePage(
+          key: GlobalObjectKey<TowerDefensePageDefaultState>(
+              DateTime.now().millisecondsSinceEpoch * 9),
+          name: 'towerDefensePage',
+          path: '/tower-defense'),
       '/wallet': (BuildContext context) => LinkListenerWrapper(
           child: WalletHomePage(
               key: GlobalObjectKey<AboutMePageDefaultState>(
@@ -84,6 +90,14 @@ class RoutedApp extends MaterialApp {
                   DateTime.now().millisecondsSinceEpoch * 2),
               name: 'aboutMePage',
               path: '/about');
+        });
+      case '/tower-defense':
+        return MaterialPageRoute<dynamic>(builder:(context) {
+          return TowerDefensePage(
+          key: GlobalObjectKey<TowerDefensePageDefaultState>(
+              DateTime.now().millisecondsSinceEpoch * 9),
+          name: 'towerDefensePage',
+          path: '/tower-defense');
         });
       case '/wallet':
         return MaterialPageRoute<dynamic>(builder: (context) {

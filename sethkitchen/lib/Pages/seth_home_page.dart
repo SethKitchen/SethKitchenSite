@@ -93,15 +93,21 @@ class SethHomePageDefaultState extends State<SethHomePage> {
                     ],
                   ))),
         ),
-        const StaggeredGridTile.count(
+        StaggeredGridTile.count(
             crossAxisCellCount: 2,
             mainAxisCellCount: 1,
             child: Card(
                 child: Align(
                     alignment: Alignment.center,
-                    child: Padding(
+                    child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/tower-defense');
+                              },
+                              child: const Padding(
                         padding: EdgeInsets.all(10),
-                        child: Text("Coming Soon... Kitchen Tower Defense"))))),
+                        child: Text("Kitchen Tower Defense"))))))),
         StaggeredGridTile.count(
             crossAxisCellCount: 4,
             mainAxisCellCount: 2,
