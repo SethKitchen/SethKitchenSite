@@ -1,10 +1,11 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sethkitchen/Pages/TowerDefense/hud.dart';
+import 'package:sethkitchen/Pages/TowerDefense/game.dart';
 import 'package:sethkitchen/Pages/base_page.dart';
 
 class TowerDefensePage extends BasePage {
-  const TowerDefensePage({required key, required String name, required String path})
+  TowerDefensePage({required key, required String name, required String path})
       : super(key: key, name: name, path: path);
 
   @override
@@ -14,6 +15,7 @@ class TowerDefensePage extends BasePage {
 class TowerDefensePageDefaultState extends State<TowerDefensePage> {
   String quoteText =
       '"Currently messing with Kitchen token on Solana blockchain!"';
+  KitchenDefenseGame? game;
 
   Widget getTextForScreenSize(double width) {
     if (width > 800) {
@@ -39,24 +41,11 @@ class TowerDefensePageDefaultState extends State<TowerDefensePage> {
   }
 
   Widget getColumnForScreenSize(double width, double height) {
-    if (width > 1000) {
-      return Container(
-        color: Colors.lightBlue,
-        width: 800,
-        child: Column(children: [
-           Expanded(
-              child: HUD(key:GlobalKey()))
-        ]),
-      );
-    } else {
-      return Container(
-        color: Colors.lightBlue,
-        child: Column(children: [
-             Expanded(
-              child: HUD(key:GlobalKey()))
-        ]),
-      );
-    }
+    game ??= KitchenDefenseGame(mapWidth: width, mapHeight: height - 160);
+    return Container(
+      color: Colors.lightBlue,
+      child: Column(children: [Expanded(child: GameWidget(game: game!))]),
+    );
   }
 
   @override
