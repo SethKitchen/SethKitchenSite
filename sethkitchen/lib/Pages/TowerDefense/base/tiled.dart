@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:sethkitchen/Pages/TowerDefense/base/game.dart';
 import 'package:sethkitchen/Pages/TowerDefense/base/gameobject.dart';
 
 enum TileDirection { north, east, south, west }
@@ -93,5 +96,91 @@ class BaseTile extends BaseGameObject {
   @override
   String toString() {
     return "$gameObjectName #$id at ($x, $y)";
+  }
+}
+
+/// A game that has a map made of tiles in it. */
+class TiledGame extends BaseGame {
+  // client <--> server properties
+  /// The tiles in the game, in rowMajor order. */
+  final List<BaseTile> tiles;
+
+  /// The width of the map along the X-Axis. */
+  final num mapWidth;
+
+  /// The height of the map along the Y-Axis. */
+  final num mapHeight;
+
+  // server-side only
+  /// The valid directions tiles can be in from one another. */
+
+  // any[] is required for mixin constructor signature
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TiledGame(
+      {required this.mapWidth, required this.mapHeight, this.tiles = const []})
+      : super() {
+    // Create each tile.
+    for (num x = 0; x < mapWidth; x++) {
+      for (num y = 0; y < mapHeight; y++) {
+        final i = x + y * mapWidth;
+        tiles[i.toInt()] = manager.createTile(x, y);
+      }
+    }
+
+    // now hook up their neighbors
+    for (num x = 0; x < mapWidth; x++) {
+      for (num y = 0; y < mapHeight; y++) {
+        final tile = getTile(x, y);
+
+        tile?.tileNorth = getTile(x, y - 1);
+        tile?.tileEast = getTile(x + 1, y);
+        tile?.tileSouth = getTile(x, y + 1);
+        tile?.tileWest = getTile(x - 1, y);
+      }
+    }
+  }
+
+  /// Gets the tile at (x, y), or undefined if the co-ordinates are
+  /// off-map.
+  ///
+  /// @param x - The x position of the desired tile.
+  /// @param y - The y position of the desired tile.
+  /// @returns The Tile at (x, y) if valid, null otherwise.
+  BaseTile? getTile(num x, num y) {
+    if (x < 0 || x >= mapWidth || y < 0 || y >= mapHeight) {
+      return null;
+    }
+
+    return tiles[(x + y * mapWidth).toInt()];
+  }
+
+  /// Given the index in the tiles array, gets the (x, y) of that tile.
+  ///
+  /// @param index - The index to get.
+  /// @returns A point with the { x, y } value at that index's point.
+  Point getIndex(num index) {
+    final y = index / mapWidth;
+    final x = index - y * mapWidth;
+
+    return Point(x, y);
+  }
+
+  /// Inverts a direction string, e.g. "North" -> "South".
+  ///
+  /// @param direction - The direction string to invert.
+  /// @returns The direction inverted,
+  /// e.g. "East" -> "West", undefined if the direction was not a valid
+  /// direction string.
+  TileDirection invertTileDirection(TileDirection direction) {
+    switch (direction) {
+      case TileDirection.east:
+        return TileDirection.west;
+      case TileDirection.north:
+        return TileDirection.south;
+      case TileDirection.south:
+        return TileDirection.north;
+      case TileDirection.west:
+        return TileDirection.east;
+    }
   }
 }

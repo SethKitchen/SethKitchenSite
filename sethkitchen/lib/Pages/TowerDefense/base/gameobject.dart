@@ -50,9 +50,10 @@ class BaseGameObject extends Component {
   /// @param data - The initialization data use by the super class.
   /// @param requiredData - The data required to hook up this game object
   /// the game, and set default values for the sub class.
-  BaseGameObject(
-      BaseGameObjectData data, BaseGameObjectRequiredData requiredData)
-      : super() {
+  BaseGameObject({
+    required this.id,
+    required this.gameObjectName,
+  }) : super() {
     game = requiredData.game;
     manager = game.manager;
     game.gameObjects[id] = this;
